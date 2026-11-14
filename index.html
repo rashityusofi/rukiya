@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Лечение Кораном | Рашит Юсупов</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Oswald:wght@600&display=swap" rel="stylesheet">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{
+  --bg:#143f57; --card:#f6f1eb; --text:#ffffff; --accent:#cd9f61;
+  --muted:#edefec; --border:#cd9f61; --ink:#143f57; --ink-soft:#4a6677;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:"Montserrat",sans-serif;font-weight:500;font-size:16px;line-height:1.5;
+  min-height:100vh;min-height:100dvh;
+  padding:calc(20px + max(env(safe-area-inset-top,0px),var(--tg-content-safe-area-inset-top,0px))) 
+          calc(20px + env(safe-area-inset-right,0px))
+          calc(28px + max(env(safe-area-inset-bottom,0px),var(--tg-content-safe-area-inset-bottom,0px)))
+          calc(20px + env(safe-area-inset-left,0px));}
+.wrap{max-width:560px;margin:0 auto}
+h1,h2{font-family:"Oswald",sans-serif;font-weight:600;margin:0 0 12px;line-height:1.2;overflow-wrap:anywhere}
+h1{font-size:32px}
+h2{font-size:26px}
+h1:focus,h2:focus{outline:none}
+p{margin:0 0 14px;overflow-wrap:anywhere}
+.brand{color:var(--text);font-size:16px;padding:8px 0 16px;border-bottom:1px solid var(--accent);margin-bottom:28px}
+.welcome .muted,.welcome .note{color:var(--text)}
+.kicker{color:var(--accent);font-size:14px;letter-spacing:.04em;margin-bottom:10px}
+.muted{color:var(--muted);font-size:16px}
+.note{color:var(--muted);font-size:16px;border-left:3px solid var(--accent);padding-left:12px;margin:20px 0 28px}
+.card{background:var(--card);color:var(--ink);border:1px solid var(--border);border-radius:16px;padding:8px;margin:16px 0 20px}
+.card .res{padding:12px}
+.card .res p{color:var(--ink)}
+.card .res ul{margin:0 0 14px;padding-left:22px}
+.card .res li{margin-bottom:6px}
+.cta{padding:4px 0}
+.btn{display:flex;align-items:center;justify-content:center;text-align:center;width:100%;min-height:52px;
+  padding:12px 18px;margin-top:12px;border-radius:12px;border:2px solid var(--accent);
+  font:500 16px/1.35 "Montserrat",sans-serif;cursor:pointer;text-decoration:none;overflow-wrap:anywhere;
+  -webkit-tap-highlight-color:transparent}
+.btn.primary{background:var(--accent);color:var(--bg)}
+.btn.secondary{background:transparent;color:var(--text)}
+.btn.white{background:#ffffff;border-color:#ffffff;color:#143f57}
+.btn[disabled],.btn[aria-disabled="true"]{opacity:.55;cursor:not-allowed}
+.btn:focus-visible,input:focus-visible+.box{outline:3px solid var(--text);outline-offset:2px}
+.card input:focus-visible+.box{outline-color:var(--ink)}
+.progress-label{display:flex;justify-content:space-between;color:var(--muted);font-size:15px;margin-bottom:8px}
+.bar{height:8px;background:rgba(237,239,236,.2);border-radius:8px;overflow:hidden;margin-bottom:22px}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:8px}
+.q{display:flex;gap:14px;align-items:flex-start;padding:14px 12px;border-radius:12px;cursor:pointer;position:relative;
+  font-size:16px;line-height:1.5}
+.q+.q{border-top:1px solid rgba(205,159,97,.4)}
+.q input{position:absolute;opacity:0;width:28px;height:28px;margin:0;left:12px;top:12px}
+.box{flex:0 0 28px;width:28px;height:28px;border:2px solid var(--accent);border-radius:8px;background:#fff;margin-top:-1px;
+  display:flex;align-items:center;justify-content:center}
+.box svg{width:18px;height:18px;visibility:hidden}
+.q.on{background:rgba(205,159,97,.24)}
+.q.on .box{background:var(--accent)}
+.q.on .box svg{visibility:visible}
+.q span.t{flex:1;overflow-wrap:anywhere}
+.dist{margin:6px 0 4px}
+.drow{margin-bottom:16px}
+.drow-h{display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:6px;overflow-wrap:anywhere}
+.drow-h strong{font-size:22px;white-space:nowrap}
+.track{height:14px;border-radius:8px;background:rgba(20,63,87,.14);overflow:hidden}
+.track i{display:block;height:100%;background:var(--accent);border-radius:8px;min-width:4px}
+.dist-note{color:var(--ink-soft);font-size:14px;margin-top:12px}
+.link-note{color:var(--muted);font-size:15px;margin-top:10px;text-align:center}
+.overlay{position:fixed;inset:0;background:rgba(10,30,42,.75);display:flex;align-items:center;justify-content:center;padding:20px;z-index:10}
+.dialog{background:var(--card);color:var(--ink);border:1px solid var(--border);border-radius:16px;padding:20px;max-width:420px;width:100%}
+.dialog p{font-size:17px}
+.dialog .btn.secondary{color:var(--ink)}
+@media (max-width:360px){h1{font-size:28px}h2{font-size:24px}}
+</style>
+</head>
+<body>
+<main class="wrap" id="app"></main>
+
+<script>
+// Основные настройки и тексты меняются здесь
+window.APP_CONFIG = {
+  projectName: "Лечение Кораном | Рашит Юсупов",
+  enrollmentUrl: "https://t.me/rashityusofi",
+  enrollmentUrl2: "https://paywall.pw/w7xvj4gr8jx4", // «Участвовать в программе»
+  colors: { bg:"#143f57", card:"#f6f1eb", text:"#ffffff", accent:"#cd9f61", muted:"#edefec", border:"#cd9f61" },
+  texts: {
+    kicker: "ДИАГНОСТИКА ВАШЕГО СОСТОЯНИЯ",
+    title: "Что беспокоит Вас в последнее время?",
+    intro: "Отметьте то, что беспокоило вас в течение последних 2 недель. Можно пропустить блоки, если вам некомфортно.",
+    disclaimer: "Анкета не заменяет полноценную диагностику у лекаря.",
+    start: "Начать диагностику",
+    hint: "Поставьте галочки там, где ответили бы «да»",
+    next: "Далее", skip: "Пропустить блок", back: "Назад",
+    showResult: "Посмотреть результат",
+    skipConfirm: "Пропустить блок и убрать выбранные в нём ответы?",
+    resetConfirm: "Очистить все ответы и начать заново?",
+    yes: "Да", cancel: "Отмена",
+    resultTitle: "Ваш результат",
+    resultIntro: "За последние две недели вас беспокоили:",
+    noneChecked: "Вы не отметили ни одного пункта",
+    topicsSentence: "Больше всего отмеченных вами признаков относится к {topics}.",
+    distTitle: "Распределение отмеченных признаков",
+    distNote: "Диаграмма показывает, к каким темам относятся отмеченные вами пункты. Это не диагноз!",
+    noMatch: "Эти проявления заслуживают внимания, ведь есть опасения, что они могут быть связаны с духовным воздействием - сглазом, колдовством или воздействием джинна.",
+    cta: [
+      "Пусть Всевышний по Своей милости дарует вам исцеление. Со своей стороны мы должны использовать дозволенные причины.",
+      "Приглашаю вас на **двухнедельную онлайн-программу**.",
+      "За две недели я проведу **6 сеансов шариатской рукъи онлайн**. В группе вы получите материалы для самодиагностики и самопомощи, а также обратную связь от меня.",
+      "**Стоимость участия – 3000 рублей**. Дата старта – 21 ноября."
+    ],
+    enroll: "Подробнее о программе",
+    enroll2: "Участвовать в программе",
+    noLink: "Ссылка на запись пока не задана.",
+    redo: "Пройти заново"
+  },
+  topSentenceCount: 3, // сколько тем называть в жирной строке
+  // Блоки: from/to — номера вопросов (включительно)
+  blocks: [
+    { title:"Самочувствие", from:1, to:15 },
+    { title:"Сон, сновидения и восприятие", from:16, to:25 },
+    { title:"Мысли, эмоции и поклонение", from:26, to:36 },
+    { title:"Отношения, повседневная и интимная жизнь", from:37, to:46 }
+  ],
+  // 46 вопросов подряд; нумерация — по порядку
+  questions: [
+    "У вас часто болит голова без причины",
+    "Вы чувствуете тяжесть или напряжение в плечах и затылке",
+    "Вас беспокоит боль в пояснице",
+    "У вас часто болят ноги или колени",
+    "Вас беспокоят боли в животе или вздутие",
+    "У вас заметно снизился аппетит",
+    "Вы чувствуете слабость даже после отдыха",
+    "У вас бывают онемение, покалывание или дрожь в руках и ногах",
+    "На теле появляются синяки и царапины, происхождение которых вы не можете объяснить",
+    "Вас беспокоит звон или гул в ушах",
+    "Вы чувствуете стеснение в груди, особенно после намазов ‘Аср или Магриб, либо вас беспокоит боль в животе",
+    "Вы чувствуете пульсирующую боль по всему телу",
+    "У вас бывают сильные непроизвольные подёргивания",
+    "Ваши менструации стали длиться необычно долго",
+    "Вы набираете вес, хотя мало едите, или худеете и не можете есть",
+    "Вам трудно заснуть или вы часто просыпаетесь ночью",
+    "Вы спите заметно больше обычного, но всё равно хотите спать",
+    "Вам часто снятся пугающие сны — например, погоня, падение или нападение",
+    "Вы просыпаетесь после кошмаров и боитесь снова уснуть",
+    "Вам снятся неприятные сны сексуального характера, которые продолжают тревожить вас после пробуждения",
+    "Вам снятся кошки, собаки или змеи",
+    "Вы слышите голос, будто кто-то зовёт вас",
+    "У вас бывает ощущение, будто кто-то идёт позади вас или дышит рядом",
+    "У вас перед глазами проносятся образы",
+    "Вы чувствуете, что задыхаетесь и не можете вдохнуть, будто что-то вас душит, какое-то время не можете пошевелиться",
+    "Вас беспокоят мысли, от которых трудно отвлечься",
+    "Ваши мысли не прекращаются ни днём, ни ночью",
+    "Вы часто испытываете тревогу или страх, даже когда не понимаете причину",
+    "Вы стали чаще раздражаться или резко злиться",
+    "Вы часто чувствуете печаль или плачете, не понимая почему",
+    "Вам хочется избегать людей и проводить больше времени в одиночестве",
+    "Во время намаза или чтения Корана вы часто зеваете",
+    "Во время намаза или чтения Корана вам трудно сосредоточиться из-за тревоги или неприятных ощущений",
+    "Во время чтения или слушания Корана у вас появляется желание прервать его из-за дискомфорта",
+    "Вас беспокоят нежелательные мысли о вере, которые вызывают страх или чувство вины",
+    "Вас беспокоят навязчивые сомнения в Аллахе и Его могуществе, а также сомнения в окружающих вас людях",
+    "Вас стало чаще раздражать общение с супругом или близкими",
+    "Вы стали чаще ссориться с близкими",
+    "Вы часто ругаетесь и сквернословите",
+    "Вам не хочется возвращаться домой, а вне дома становится легче",
+    "Вам стало трудно заниматься привычными делами из-за своего состояния",
+    "Вы или ваш супруг (ваша супруга) испытываете неприязнь к половой близости",
+    "Наблюдается эректильная дисфункция",
+    "Вам нравится смотреть на своё обнажённое тело в зеркале и прикасаться к нему. Мастурбация также доставляет вам удовольствие",
+    "Вы часто смотрите порнографию и испытываете навязчивое желание это делать",
+    "Вы столкнулись с бесплодием или с препятствиями для помолвки либо вступления в брак"
+  ],
+  // Темы: процент = отмечено в теме / всего пунктов в теме
+  topics: [
+    { name:"Сглаз", label:"сглазу", nums:[1,2,6,7,8,17,26,30,31,32,33,35,36,41] },
+    { name:"Зависть", label:"зависти", nums:[1,2,3,5,11,12,13,15,16,18,19,21,28,29,30,36,40] },
+    { name:"Сихр (колдовство/порча)", label:"сихру", nums:[3,4,5,9,10,11,16,18,19,21,22,24,27,28,29,31,33,34,37,38,40,42,43,46] },
+    { name:"Касание джинна", label:"касанию джинна", nums:[8,10,12,13,25,27,34,35,39] },
+    { name:"Влюблённый джинн", label:"влюблённому джинну", nums:[3,9,14,20,23,29,30,31,37,38,42,44,45,46] }
+  ]
+};
+
+(function(){
+  var C = window.APP_CONFIG, T = C.texts;
+  var app = document.getElementById("app");
+  var answers = new Set();   // только в памяти
+  var screen = 0;            // 0 — приветствие, 1–3 — блоки, 4 — результат
+
+  // Цвета из конфигурации
+  var r = document.documentElement.style;
+  r.setProperty("--bg",C.colors.bg); r.setProperty("--card",C.colors.card); r.setProperty("--text",C.colors.text);
+  r.setProperty("--accent",C.colors.accent); r.setProperty("--muted",C.colors.muted); r.setProperty("--border",C.colors.border);
+
+  // Telegram SDK (если доступен)
+  var tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
+  if (tg) {
+    try { tg.ready(); } catch(e){}
+    try { tg.expand(); } catch(e){}
+    try { tg.setHeaderColor(C.colors.bg); } catch(e){}
+    try { tg.setBackgroundColor(C.colors.bg); } catch(e){}
+  }
+
+  function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }
+  function md(s){ return esc(s).replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>"); }
+  function joinList(a){ return a.length<2 ? a.join("") : a.slice(0,-1).join(", ")+" и "+a[a.length-1]; }
+
+  // Распределение: процент каждой темы считается отдельно; сумма может превышать 100%
+  function computeDistribution(set){
+    var rows=C.topics.map(function(t){
+      var m=t.nums.filter(function(x){return set.has(x);}).length;
+      return {t:t,m:m,pct:Math.round(m/t.nums.length*100)};
+    }).filter(function(r){return r.pct>0;});
+    rows.sort(function(a,b){return b.pct-a.pct;});
+    return rows;
+  }
+  window.computeDistribution = computeDistribution; // для проверки в консоли
+
+  function render(){
+    if (screen===0) renderWelcome();
+    else if (screen<=C.blocks.length) renderBlock(screen-1);
+    else renderResult();
+    window.scrollTo(0,0);
+    var h = app.querySelector("[data-focus]");
+    if (h) h.focus({preventScroll:true});
+  }
+
+  function renderWelcome(){
+    app.innerHTML =
+      '<div class="welcome"><div class="brand">'+esc(C.projectName)+'</div>'+
+      '<div class="kicker">'+esc(T.kicker)+'</div>'+
+      '<h1 tabindex="-1" data-focus>'+esc(T.title)+'</h1>'+
+      '<p class="muted">'+esc(T.intro)+'</p>'+
+      '<p class="note">'+esc(T.disclaimer)+'</p>'+
+      '<button class="btn primary" id="start" type="button">'+esc(T.start)+'</button></div>';
+    document.getElementById("start").onclick=function(){screen=1;render();};
+  }
+
+  var CHECK='<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="#143f57" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  function renderBlock(b){
+    var blk=C.blocks[b], last=(b===C.blocks.length-1), total=C.blocks.length, rows="";
+    for(var n=blk.from;n<=blk.to;n++){
+      var on=answers.has(n), i=n-1;
+      rows+='<label class="q'+(on?' on':'')+'"><input type="checkbox" value="'+n+'"'+(on?' checked':'')+'>'+
+            '<span class="box">'+CHECK+'</span><span class="t">'+esc(C.questions[i])+'</span></label>';
+    }
+    app.innerHTML =
+      '<div class="progress-label"><span>Блок '+(b+1)+' из '+total+'</span></div>'+
+      '<div class="bar" role="progressbar" aria-valuemin="1" aria-valuemax="'+total+'" aria-valuenow="'+(b+1)+'" aria-label="Блок '+(b+1)+' из '+total+'"><i style="width:'+Math.round((b+1)/total*100)+'%"></i></div>'+
+      '<h2 tabindex="-1" data-focus>'+esc(blk.title)+'</h2>'+
+      '<p class="muted">'+esc(T.hint)+'</p>'+
+      '<div class="card" id="list">'+rows+'</div>'+
+      '<button class="btn primary" id="next" type="button">'+esc(last?T.showResult:T.next)+'</button>'+
+      '<button class="btn secondary" id="skip" type="button">'+esc(T.skip)+'</button>'+
+      '<button class="btn secondary" id="back" type="button">'+esc(T.back)+'</button>';
+
+    document.getElementById("list").addEventListener("change",function(e){
+      var inp=e.target; if(!inp||inp.type!=="checkbox") return;
+      var n=Number(inp.value);
+      if(inp.checked) answers.add(n); else answers.delete(n);
+      inp.closest(".q").classList.toggle("on",inp.checked);
+    });
+    document.getElementById("next").onclick=function(){screen=screen+1;render();};
+    document.getElementById("back").onclick=function(){screen=screen-1;render();};
+    document.getElementById("skip").onclick=function(){
+      var has=false; for(var k=blk.from;k<=blk.to;k++) if(answers.has(k)) has=true;
+      var go=function(){
+        for(var k=blk.from;k<=blk.to;k++) answers.delete(k);
+        screen=screen+1; render();
+      };
+      if(has) confirmDialog(T.skipConfirm,go); else go();
+    };
+  }
+
+  function renderResult(){
+    var html='<h2 tabindex="-1" data-focus>'+esc(T.resultTitle)+'</h2><div class="card"><div class="res">';
+    if(answers.size===0){
+      html+='<p>'+esc(T.noneChecked)+'</p>';
+    } else {
+      var dist=computeDistribution(answers);
+      if(dist.length){
+        var names=dist.slice(0,C.topSentenceCount).map(function(r){return r.t.label;});
+        html+='<p><strong>'+esc(T.topicsSentence).replace("{topics}",esc(joinList(names)))+'</strong></p>';
+        html+='<h3 style="font-family:Oswald,sans-serif;font-weight:600;font-size:20px;margin:18px 0 10px">'+esc(T.distTitle)+'</h3><div class="dist">'+
+          dist.map(function(r){
+            return '<div class="drow"><div class="drow-h"><span>'+esc(r.t.name)+'</span><strong>'+r.pct+'%</strong></div>'+
+              '<div class="track" role="img" aria-label="'+esc(r.t.name)+': '+r.pct+'%"><i style="width:'+r.pct+'%"></i></div></div>';
+          }).join("")+'</div><p class="dist-note">'+esc(T.distNote)+'</p>';
+      } else {
+        html+='<p>'+esc(T.noMatch)+'</p>';
+      }
+    }
+    html+='</div></div><div class="cta">'+T.cta.map(function(p){return '<p>'+md(p)+'</p>';}).join("")+'</div>';
+    if(C.enrollmentUrl){
+      html+='<a class="btn primary ext" href="'+esc(C.enrollmentUrl)+'" target="_blank" rel="noopener noreferrer">'+esc(T.enroll)+'</a>';
+    } else {
+      html+='<button class="btn primary" type="button" disabled aria-disabled="true">'+esc(T.enroll)+'</button><p class="link-note">'+esc(T.noLink)+'</p>';
+    }
+    if(C.enrollmentUrl2){
+      html+='<a class="btn white ext" href="'+esc(C.enrollmentUrl2)+'" target="_blank" rel="noopener noreferrer">'+esc(T.enroll2)+'</a>';
+    }
+    html+='<button class="btn secondary" id="redo" type="button">'+esc(T.redo)+'</button>';
+    app.innerHTML=html;
+
+    Array.prototype.forEach.call(app.querySelectorAll("a.ext"),function(a){
+      a.onclick=function(e){ if(tg){ e.preventDefault(); openLink(a.getAttribute("href")); } };
+    });
+    document.getElementById("redo").onclick=function(){
+      confirmDialog(T.resetConfirm,function(){answers.clear();screen=0;render();});
+    };
+  }
+
+  // Telegram-ссылки — через openTelegramLink, остальные HTTPS — через openLink
+  function openLink(url){
+    try{
+      if(/^https:\/\/(t\.me|telegram\.me)\//i.test(url) && tg.openTelegramLink) tg.openTelegramLink(url);
+      else if(/^https:\/\//i.test(url) && tg.openLink) tg.openLink(url);
+      else window.open(url,"_blank","noopener");
+    }catch(err){ window.open(url,"_blank","noopener"); }
+  }
+
+  function confirmDialog(msg,onYes){
+    var prev=document.activeElement;
+    var o=document.createElement("div"); o.className="overlay";
+    o.innerHTML='<div class="dialog" role="alertdialog" aria-modal="true" aria-labelledby="dlg"><p id="dlg">'+esc(msg)+'</p>'+
+      '<button class="btn primary" type="button" data-y>'+esc(T.yes)+'</button>'+
+      '<button class="btn secondary" type="button" data-n>'+esc(T.cancel)+'</button></div>';
+    document.body.appendChild(o);
+    function close(){ document.removeEventListener("keydown",key); o.remove(); if(prev&&prev.focus&&document.contains(prev)) prev.focus(); }
+    function key(e){ if(e.key==="Escape") close(); }
+    document.addEventListener("keydown",key);
+    o.querySelector("[data-n]").onclick=close;
+    o.querySelector("[data-y]").onclick=function(){ close(); onYes(); };
+    o.querySelector("[data-n]").focus();
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>
